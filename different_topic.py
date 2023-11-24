@@ -145,3 +145,49 @@ a, b, c = number
 x = number[0]
 print (f"Szybszy sposób: {a}, lub tradycyjny sposób: {x}")
 print('---')
+
+# ćw 10 Dodanie klientów do jednej tablicy 
+class Client():
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+    def all_clients (self):
+        return [self.name, self.email]
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(name='{self.name}',email: '{self.email}')"
+    
+client1 = Client('Tom', 'sample@gmail.com')
+client2 = Client('Donald', 'sales@yahoo.com')
+client3 = Client('Mike', 'sales-contact@yahoo.com') 
+
+allClient = [client1, client2, client3]
+clients= []
+
+for client in allClient:
+    clients.append(client)
+
+print(clients)
+print('---')
+
+# ćw 11
+# **kwars dowolna liczba elementów i wyświetlenie values
+# Również można wyświetlić keys 
+class Person():
+    def concatenate_strings (self, **kwargs):
+        concatenated = ",".join(str(value) for value in kwargs.values())
+        return concatenated
+        
+person = Person()
+
+firstPerson_result = person.concatenate_strings(first_name='John', last_name='Doe', age=30)
+secondPerson_result = person.concatenate_strings()
+thirdPerson_result = person.concatenate_strings(first_name='Mary', gender='Female')
+fourthPerson_result = person.concatenate_strings(first_name='Mary', gender='Female', age=5)
+
+print(firstPerson_result)
+print(secondPerson_result)
+print(thirdPerson_result)
+print (fourthPerson_result)
+print('---')
