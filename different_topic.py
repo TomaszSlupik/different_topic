@@ -191,3 +191,30 @@ print(secondPerson_result)
 print(thirdPerson_result)
 print (fourthPerson_result)
 print('---')
+
+# ćw 12 LEGB: możliwość posiadania wielu zmiennych o tej samej nazwie w różnych zakresach.
+# Wynik będzie 10
+x = 10
+def func1():
+    y = 5
+    return y
+
+def func2():
+    y = 2
+    return func1() * y
+
+print(func2())
+print('---')
+
+# ćw 13 
+a = 10
+def func1():
+    a = 5
+    return a
+
+def func2():
+    a = 2
+    return func1() * globals()['a']
+
+print(func2())
+print('---')
