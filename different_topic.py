@@ -206,7 +206,7 @@ def func2():
 print(func2())
 print('---')
 
-# ćw 13 
+# ćw 13 LEGB - wynik 50 => wywołanie globals tj. 5 * 10
 a = 10
 def func1():
     a = 5
@@ -218,3 +218,72 @@ def func2():
 
 print(func2())
 print('---')
+
+# ćw 14 LEGB => global zamian na 5
+y = 10
+
+def func1():
+    global y 
+    y = 5
+
+def func2():
+    print (y) 
+
+
+func1()
+func2()
+print('---')
+
+# ćw 15 Nonlocal - i zmiana wartości na 7, a Global => wartość 10
+x = 10
+def func1():
+    x = 5
+
+    def inner_func():
+        nonlocal x
+        x = 7
+        
+    inner_func()
+
+    print(x)
+
+def func2():
+    global x 
+    print(x)
+
+func1()
+func2()
+print('---')
+
+# ćw 16 - ten przykład: wyniki 20 i 20, bo jest wewenątrz inner_function 
+# i daliśmy nonlocal 
+def outer_function():
+    x = 10
+
+    def inner_function():
+        nonlocal x
+        x = 20
+        print("Inner function:", x)
+
+    inner_function()
+    print("Outer function:", x)
+
+outer_function()
+print('---')
+
+# ćw 17 _ do odczytu i modyfikacji, dekorator - @property - do oczytu
+# Obliczenie pola prostokątu
+class Rectangle():
+    def __init__(self, width, height):
+        self._width = width
+        self._height = height
+
+    @property
+    def area (self):
+        return self._width * self._height        
+    
+rectangle = Rectangle(3, 4)
+
+print (f"width: {rectangle._width}, height: {rectangle._height} -> area: {rectangle.area}")
+
+# ćw 18
