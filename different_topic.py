@@ -285,5 +285,90 @@ class Rectangle():
 rectangle = Rectangle(3, 4)
 
 print (f"width: {rectangle._width}, height: {rectangle._height} -> area: {rectangle.area}")
+print('---')
 
 # ćw 18
+# Obliczenie obwodu prostokąta 
+
+class Oblong ():
+    def __init__(self, width, heigth):
+        self.width = width
+        self.heigth = heigth
+    
+    def perimeter(self):
+        return 2 * (self.heigth + self.width)
+
+    def __repr__(self):
+        return f"width: {self.width}, height: {self.heigth} -> perimeter: {self.perimeter()}"
+    
+
+oblong = Oblong(3, 4)
+
+print(oblong)
+print('---')
+
+# ćw 19 - gettery czyli odczyt prywatnej wartości atrybutu
+# oznaczony dekoratorem @property
+# look jest geterem i pozwala odczytać wartość prywatną atrybutu
+
+class MyClass():
+    def __init__(self, length):
+        self._length = length
+
+    @property
+    def look(self):
+        return self._length
+    
+obj = MyClass(10)
+
+print(obj.look)
+print('---')
+
+# ćw 20 - settery czyli możliwość zmiany wartości prywatnej 
+
+class Timer ():
+    def __init__(self, time):
+        self._time = time
+
+    @property
+    def myTime(self):
+        return self._time
+    
+    @myTime.setter
+    def myTime(self, value):
+        if isinstance(value, int):
+            self._time = value
+            print(f"Wpisałeś poprawnie, twój czas to: {self._time} min")
+        else:
+            print("Wpisz liczbę jako int")
+
+myobj = Timer(90)
+
+myobj.myTime = 100
+print('---')
+
+# ćw 21
+# gettery i settery 
+
+class Circle ():
+    def __ini__(self, radius):
+        self._radius = radius
+
+    @property
+    def radius(self):
+        return self._radius
+    
+    @radius.setter
+    def radius(self, value):
+        self._radius = value
+
+    def perimeter (self):
+        return f"Obwód koła wynosi: {2 * 3.14 * self._radius}"
+
+circle = Circle()
+circle.radius = 3
+
+print(circle.perimeter())
+print('---')
+
+# 
