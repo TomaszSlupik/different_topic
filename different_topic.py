@@ -371,4 +371,77 @@ circle.radius = 3
 print(circle.perimeter())
 print('---')
 
+# Dodawanie samych stringów do listy
+class StringListOnly (): 
+    def __init__(self, thisName):
+        self.thisName = thisName
+        self.listStr = []
+
+    def appendToList(self):
+        if isinstance(self.thisName, str):
+            self.listStr.append(self.thisName)
+        else:
+            raise TypeError ('Only objects of type str can be added to the list.')
+
+
+firstString = StringListOnly('Data')
+firstString.appendToList()
+
+secondString = StringListOnly('Science')
+secondString.appendToList()
+
+thirdString = StringListOnly('Machine Learning')
+thirdString.appendToList()
+
+print(f"{firstString.listStr}, {secondString.listStr}, {thirdString.listStr}")
+print("---")
+
+# Produkty z pustą tablicą
+
+class Product():
+    def __init__(self, product_name, price):
+        self.product_name = product_name
+        self.price = price
+
+class Warehouse(Product):
+    def __init__(self):
+        self.products  = []
+
+
+warehouse = Warehouse()
+print(warehouse.products)
+print("---")
+
+# dodawanie produktów, gdy są duplikaty pomijamy 
+class ParamiterProduct ():
+    def __init__(self, nameProduct, priceProduct):
+        self.nameProduct = nameProduct
+        self.priceProduct = priceProduct
+
+class Addproduct(ParamiterProduct):
+    def __init__(self):
+        self.check_product = []
+
+    def add_product_to_list(self, products):
+        for check in self.check_product:
+            if check.nameProduct == products.nameProduct and check.priceProduct == products.priceProduct:
+                print("Produkt istnieje")
+                return
+        self.check_product.append(products)
+
+all_product = Addproduct()
+
+firstProduct = ParamiterProduct('Laptop', 3900.0)
+secondProduct = ParamiterProduct('Mobile Phone', 1990.0)
+thirdProduct = ParamiterProduct('Mobile Phone', 1990.0)
+
+all_product.add_product_to_list(firstProduct)
+all_product.add_product_to_list(secondProduct)
+all_product.add_product_to_list(thirdProduct)
+
+print("Lista produktów które zostały dodane:")
+for item in all_product.check_product:
+    print(f"{item.nameProduct} z ceną {item.priceProduct}")
+
+print("---")
 # 
