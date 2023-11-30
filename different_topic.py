@@ -444,4 +444,39 @@ for item in all_product.check_product:
     print(f"{item.nameProduct} z ceną {item.priceProduct}")
 
 print("---")
-# 
+
+# Dodawanie i usuwanie produktów z koszyka:
+class ProductSettings ():
+    def __init__(self, nameProduct, priceProduct):
+        self.nameProduct = nameProduct
+        self.priceProduct = priceProduct
+
+    def __repr__(self) -> str:
+        return f"{self.nameProduct} => {self.priceProduct}"
+
+class ProductLogic():
+    
+    def __init__(self):
+        self.productList = []
+
+    def addProduct (self, nameProduct, priceProduct):
+        product = ProductSettings(nameProduct, priceProduct)
+        self.productList.append(product)
+
+    def removeProduct (self, nameProduct):
+        self.productList = [product for product in self.productList if product.nameProduct != nameProduct]
+
+    def __repr__(self) -> str:
+        return f"Lista produktów {self.productList}"
+
+
+productLogic = ProductLogic()
+productLogic.addProduct('Laptop', 3900.0)
+productLogic.addProduct('Smartphone', 1200.0)
+productLogic.addProduct('Iphone 14 PRO', 5000.0)
+
+productLogic.removeProduct('Smartphone')
+
+print (productLogic)
+
+print("---")
