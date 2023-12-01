@@ -480,3 +480,53 @@ productLogic.removeProduct('Smartphone')
 print (productLogic)
 
 print("---")
+
+# Nieformalna reprezentacja obiektu __str__
+class Training ():
+    def __init__(self, kind, time):
+        self.kind = kind
+        self.time = time
+
+    def __str__(self) -> str:
+        return f"{self.__class__.__name__} => {self.kind}, czas trwania: {self.time} min"
+    
+
+myTraining = Training('Pływanie', 70)
+
+print(myTraining)
+print("---")
+
+# sortowanie produktów 
+class Phone ():
+    def __init__(self, phone, price):
+        self.phone = phone
+        self.price = price
+
+class PhoneList ():
+    def __init__(self):
+        self.listPhone = []
+
+    def appendPhone(self, apendPhone):
+        product = [apendPhone.phone, apendPhone.price]
+        self.listPhone.append(product)
+    
+    def sortPhone(self, ascending=True):
+        self.listPhone.sort(key=lambda x: x[1], reverse=not ascending)
+
+    def __str__(self) -> str:
+        return f"Lista telefonów: {self.listPhone}"
+
+
+phoneList = PhoneList()
+
+phoneFirst = Phone('Iphone', 13)
+phoneSecond = Phone('Iphone', 14)
+phoneThird = Phone('Iphone', 12)
+
+phoneList.appendPhone(phoneFirst)
+phoneList.appendPhone(phoneSecond)
+phoneList.appendPhone(phoneThird)
+
+phoneList.sortPhone(ascending=True)
+print(phoneList)
+print("---")
