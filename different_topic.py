@@ -530,3 +530,71 @@ phoneList.appendPhone(phoneThird)
 phoneList.sortPhone(ascending=True)
 print(phoneList)
 print("---")
+
+# wyszukiwarka - 1 przykład
+class Competition():
+    def __init__(self, nameCompetition):
+        self.nameCompetition = nameCompetition
+
+class AllCompetitions():
+    def __init__(self):
+        self.ListCompetition = []
+
+    def append(self, name):
+        self.ListCompetition.append(name.nameCompetition)
+
+    def search(self, world):
+        for name in self.ListCompetition:
+            if world in name:
+                print ({name})
+    
+    def __str__(self) -> str:
+        return f"{self.ListCompetition}"
+
+allCompetitions = AllCompetitions()
+
+firstCompetition = Competition('Bieganie')
+secondCompetition = Competition('Rower')
+thirdCompetiton = Competition('Pływanie')
+fourthCompetiton = Competition('Siłownia')
+
+myList = [firstCompetition, secondCompetition, thirdCompetiton, fourthCompetiton]
+
+for name in myList:
+    allCompetitions.append(name)
+
+print(allCompetitions)
+
+print ('---')
+
+print ('Wyszukiwarka:')
+# szukamy w słowach danych liter
+allCompetitions.search('Pł')
+
+# wyszukiwarka - 2 przykład
+class ClientList (list):
+    def search_email(self, value):
+        match_client = [client for client in self if value in client.email]
+        return match_client
+
+
+class Client:
+    all_clients = ClientList()
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        Client.all_clients.append(self)
+
+    def __repr__(self) -> str:
+        return f"Client(name='{self.name}', email='{self.email}')"
+    
+client1 = Client('Tom', 'sample@gmail.com')
+client2 = Client('Donald', 'sales@gmail.com')
+client3 = Client('Mike', 'sales@yahoo.com')
+client4 = Client('Lisa', 'info@gmail.com')
+
+print(Client.all_clients)
+# Wyświetlenie tylko e-mail ze słowem sales 
+print(Client.all_clients.search_email('sales'))
+print("---")
