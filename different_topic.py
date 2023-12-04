@@ -598,3 +598,68 @@ print(Client.all_clients)
 # Wyświetlenie tylko e-mail ze słowem sales 
 print(Client.all_clients.search_email('sales'))
 print("---")
+
+# Wyszukanie jeden pod drugim Nazwy + email
+emailWithGmail = Client.all_clients.search_email('gmail')
+
+for gmail in emailWithGmail:
+    print(gmail)
+print("---")
+
+# Wyszukanie samych klientów posiadających w nazwie adresu mailowego słówko 'sales'
+onlySales = Client.all_clients.search_email('sales')
+clientsWithSales = []
+
+for sales in onlySales:
+    clientsWithSales.append(sales.name)
+print(clientsWithSales)
+print("---")
+
+
+# Sprawdzenie czy są to Stringi, w przeciwnym wypadku False 
+class CustomDict ():
+    def __init__(self, **kwargs):
+        self.kwargs = kwargs
+    
+    def is_any_str_value(self):
+        return any(isinstance(value, str) for value in self.kwargs.values())
+
+cd = CustomDict(python='mid')
+cdTwo = CustomDict(price=119.99)
+print(cd.is_any_str_value())
+print(cdTwo.is_any_str_value())
+print("---")
+
+# Dodawanie tylko Stringów
+class StringCheck():
+    def __init__(self, nameString):
+        self.nameString = nameString
+    def __str__(self) -> str:
+        return f"{self.nameString}"
+
+class StringListOnly ():
+    def __init__(self):
+        self.onlyString = []
+
+    def append(self, value):
+        if isinstance(value, str):
+            self.onlyString.append(value)
+        else:
+            raise TypeError ("Only objects of type str can be added to the list.")
+
+    def display(self):
+        for item in self.onlyString:
+            print (item)
+
+stringListOnly = StringListOnly()
+
+firstCheck = 'Data'
+secondCheck = 'Science'
+thirdCheck = 'testowanie string'
+
+stringListOnly.append(firstCheck)
+stringListOnly.append(secondCheck)
+stringListOnly.append(thirdCheck)
+
+
+stringListOnly.display()
